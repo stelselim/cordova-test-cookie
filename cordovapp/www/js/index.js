@@ -22,12 +22,12 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-  setInterval(getRequest, 1000);
+  setInterval(getRequestWithFetch, 1000);
 }
 
 function getRequest() {
   // Make the GET request
-  var url = "http://192.168.178.174:8000/";
+  var url = "https://192.168.178.174:8000/";
 
   // Make the GET request
   cordova.plugin.http.sendRequest(
@@ -46,4 +46,15 @@ function getRequest() {
       console.error("Error message:", error.error);
     }
   );
+}
+
+async function getRequestWithFetch() {
+  try {
+    var url = "https://192.168.178.174:8000/";
+    const response = await window.fetch(url);
+    console.log("Response data:", response.data);
+    console.log("Response cookie:", response);
+  } catch (error) {
+    console.log(`Error occured: ${error}`);
+  }
 }

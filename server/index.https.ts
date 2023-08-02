@@ -14,10 +14,7 @@ app.use(cookieparser());
 app.get("/", (req, res) => {
   console.log(req.cookies);
   console.log("======");
-  res.cookie("cookiename", "hellowordcookie", {
-    secure: true,
-    sameSite: "none",
-  });
+  res.cookie("cookiename", "hellowordcookie");
   res.send({ message: "Hello GET Request" });
 });
 
