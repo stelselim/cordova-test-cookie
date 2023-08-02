@@ -19,11 +19,38 @@
 
 // Wait for the deviceready event before using any of Cordova's device APIs.
 // See https://cordova.apache.org/docs/en/latest/cordova/events/events.html#deviceready
-document.addEventListener('deviceready', onDeviceReady, false);
+document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-    // Cordova is now initialized. Have fun!
+  setInterval(getRequest, 1000);
+}
 
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-    document.getElementById('deviceready').classList.add('ready');
+function getRequest() {
+  // Make the GET request
+  var url = "http://192.168.178.174:8000/";
+  var headers = {}; // Add any required headers here
+
+  // Optional parameters (if needed)
+  var params = {
+    param1: "value1",
+    param2: "value2",
+  };
+
+  // Make the GET request
+  cordova.plugin.http.sendRequest(
+    url,
+    {
+      method: "get",
+    },
+    function (response) {
+      // Success callback
+      console.log("Response data:", response.data);
+      console.log("Response cookie:", response.cookie);
+    },
+    function (error) {
+      // Error callback
+      console.error("Error status:", error.status);
+      console.error("Error message:", error.error);
+    }
+  );
 }
