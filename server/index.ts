@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieparser());
 
 app.get("/", (req, res) => {
+  console.log(req.cookies);
   res.cookie("cookiename", "hellowordcookie");
   res.send({ message: "Hello GET Request" });
 });

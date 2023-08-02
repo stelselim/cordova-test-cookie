@@ -28,13 +28,6 @@ function onDeviceReady() {
 function getRequest() {
   // Make the GET request
   var url = "http://192.168.178.174:8000/";
-  var headers = {}; // Add any required headers here
-
-  // Optional parameters (if needed)
-  var params = {
-    param1: "value1",
-    param2: "value2",
-  };
 
   // Make the GET request
   cordova.plugin.http.sendRequest(
@@ -45,7 +38,7 @@ function getRequest() {
     function (response) {
       // Success callback
       console.log("Response data:", response.data);
-      console.log("Response cookie:", response.cookie);
+      console.log("Response cookie:", response);
     },
     function (error) {
       // Error callback
